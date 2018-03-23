@@ -584,6 +584,27 @@ class Main extends Component {
               />
             </Card>
           </div>
+          <div style={styles.component}>
+            <h2>DataTables (Custom Footer Row)</h2>
+            <Card style={{margin: 12, textAlign: 'left'}}>
+              <CardHeader
+                title='Nutrition'
+                titleStyle={{fontSize: 20}}
+              />
+              <DataTables
+                height={'auto'}
+                selectable={false}
+                showRowHover={true}
+                showFooterToolbar={true}
+                showFooterRow={true}
+                footerValues={['Totals', 10, 20, 30, 40, 50, 60, 70]}
+                columns={TABLE_COLUMNS}
+                data={TABLE_DATA}
+                showCheckboxes={false}
+                count={100}
+              />
+            </Card>
+          </div>
         </div>
       </MuiThemeProvider>
     );

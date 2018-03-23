@@ -14,6 +14,7 @@ import DataTablesHeaderColumn from './DataTablesHeaderColumn';
 import DataTablesRow from './DataTablesRow';
 import DataTablesRowColumn from './DataTablesRowColumn';
 import DataTablesHeaderToolbar from './DataTablesHeaderToolbar';
+import DataTablesFooter from './DataTablesFooter';
 
 function getStyles(props, context) {
   const {
@@ -82,6 +83,7 @@ class DataTables extends Component {
     fixedFooter: PropTypes.bool,
     fixedHeader: PropTypes.bool,
     footerToolbarStyle: PropTypes.object,
+    footerValues: PropTypes.array,
     headerToolbarMode: PropTypes.string,
     height: PropTypes.string,
     initialSort: PropTypes.object,
@@ -101,6 +103,7 @@ class DataTables extends Component {
     selectable: PropTypes.bool,
     selectedRows: PropTypes.array,
     showCheckboxes: PropTypes.bool,
+    showFooterRow: PropTypes.bool,
     showFooterToolbar: PropTypes.bool,
     showHeaderToolbar: PropTypes.bool,
     showHeaderToolbarFilterIcon: PropTypes.bool,
@@ -154,6 +157,8 @@ class DataTables extends Component {
       column: '',
       order: 'asc',
     },
+    showFooterRow: false,
+    footerValues: undefined,
   };
 
   constructor(props, context) {
@@ -271,6 +276,8 @@ class DataTables extends Component {
       deselectOnClickaway,
       showCheckboxes,
       height,
+      showFooterRow,
+      footerValues,
       showHeaderToolbar,
       showFooterToolbar,
       rowSize,
@@ -391,6 +398,29 @@ class DataTables extends Component {
       );
     }
 
+    let footerRow = null;
+    if (showFooterRow) {
+      footerRow = (
+        <DataTablesFooter>
+          <DataTablesRow
+            style={Object.assign({}, styles.tableRow, tableRowStyle)}
+          >
+            {footerValues.map((column, index) => {
+              return (
+                <DataTablesRowColumn
+                  style={Object.assign({}, styles.tableRowColumn, tableRowColumnStyle, column.style)}
+                  key={index}
+                  alignRight={column.alignRight}
+                >
+                  {footerValues[index]}
+                </DataTablesRowColumn>
+              );
+            })}
+          </DataTablesRow>
+        </DataTablesFooter>
+      );
+    }
+
     return (
       <div>
         {headerToolbar}
@@ -467,6 +497,7 @@ class DataTables extends Component {
               );
             })}
           </DataTablesTableBody>
+          {footerRow}
         </DataTablesTable>
         {footerToolbar}
       </div>
