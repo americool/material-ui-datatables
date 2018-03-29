@@ -258,6 +258,9 @@ class DataTables extends Component {
     return row[column.key];
   }
 
+  renderTableFooterTotalData = (value, column) =>
+    column.render ? column.render(value) : value;
+
   render() {
     const {
       title,
@@ -409,7 +412,7 @@ class DataTables extends Component {
                   key={index}
                   alignRight={column.alignRight}
                 >
-                  {column.total || ''}
+                  {this.renderTableFooterTotalData(column.total, column) || ''}
                 </DataTablesRowColumn>
               );
             })}
