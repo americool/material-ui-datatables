@@ -249,6 +249,10 @@ var DataTables = function (_Component) {
       return row[column.key];
     };
 
+    _this.renderTableFooterTotalData = function (value, column) {
+      return column.render ? column.render(value) : value;
+    };
+
     _this.state = {
       sort: props.initialSort
     };
@@ -422,7 +426,7 @@ var DataTables = function (_Component) {
                   key: index,
                   alignRight: column.alignRight
                 },
-                column.total || ''
+                _this2.renderTableFooterTotalData(column.total, column) || ''
               );
             })
           )
