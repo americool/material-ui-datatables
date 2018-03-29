@@ -48,18 +48,23 @@ const TABLE_COLUMNS = [
   {
     key: 'name',
     label: 'Dessert (100g serving)',
+    total: 'Total',
   }, {
     key: 'calories',
     label: 'Calories',
+    total: 50,
   }, {
     key: 'fat',
     label: 'Fat (g)',
+    total: 60,
   }, {
     key: 'carbs',
     label: 'Carbs (g)',
+    total: 70,
   }, {
     key: 'protein',
     label: 'Protein (g)',
+    total: 80,
   }, {
     key: 'sodium',
     label: 'Sodium (mg)',
@@ -69,6 +74,7 @@ const TABLE_COLUMNS = [
   }, {
     key: 'iron',
     label: 'Iron (%)',
+    total: 100,
   },
 ];
 
@@ -597,7 +603,6 @@ class Main extends Component {
                 showRowHover={true}
                 showFooterToolbar={true}
                 showFooterRow={true}
-                footerValues={['Totals', 10, 20, 30, 40, 50, 60, 70]}
                 columns={TABLE_COLUMNS}
                 data={TABLE_DATA}
                 showCheckboxes={false}

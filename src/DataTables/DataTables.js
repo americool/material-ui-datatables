@@ -83,7 +83,6 @@ class DataTables extends Component {
     fixedFooter: PropTypes.bool,
     fixedHeader: PropTypes.bool,
     footerToolbarStyle: PropTypes.object,
-    footerValues: PropTypes.array,
     headerToolbarMode: PropTypes.string,
     height: PropTypes.string,
     initialSort: PropTypes.object,
@@ -158,7 +157,6 @@ class DataTables extends Component {
       order: 'asc',
     },
     showFooterRow: false,
-    footerValues: undefined,
   };
 
   constructor(props, context) {
@@ -277,7 +275,6 @@ class DataTables extends Component {
       showCheckboxes,
       height,
       showFooterRow,
-      footerValues,
       showHeaderToolbar,
       showFooterToolbar,
       rowSize,
@@ -405,14 +402,14 @@ class DataTables extends Component {
           <DataTablesRow
             style={Object.assign({}, styles.tableRow, tableRowStyle)}
           >
-            {footerValues.map((column, index) => {
+            {columns.map((column, index) => {
               return (
                 <DataTablesRowColumn
                   style={Object.assign({}, styles.tableRowColumn, tableRowColumnStyle, column.style)}
                   key={index}
                   alignRight={column.alignRight}
                 >
-                  {footerValues[index]}
+                  {column.total || ''}
                 </DataTablesRowColumn>
               );
             })}

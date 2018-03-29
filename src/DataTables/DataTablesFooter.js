@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import {TableFooter} from 'material-ui/Table';
 import ClickAwayListener from 'material-ui/internal/ClickAwayListener';
 
+function getStyles(props, context) {
+  const {tableRow} = context.muiTheme;
+
+  return {
+    root: {
+      borderBottom: props.displayBorder && `1px solid ${tableRow.borderColor}`,
+      color: tableRow.textColor,
+      height: tableRow.height,
+    },
+  };
+}
+
 class DataTablesFooter extends TableFooter {
   static muiName = 'TableFooter';
 
@@ -33,6 +45,9 @@ class DataTablesFooter extends TableFooter {
         if (rowNumber === numChildren) {
           props.displayBorder = false;
         }
+
+        const styles = getStyles(this.props, this.context, this.state);
+        props.style = Object.assign({}, styles.cell, child.props.style);
 
         const children = [];
 

@@ -93,8 +93,6 @@ class DataTablesHeaderColumn extends TableHeaderColumn {
      * Additional styling that can be applied to the tooltip.
      */
     tooltipStyle: PropTypes.object,
-
-
   };
 
   static defaultProps = {
