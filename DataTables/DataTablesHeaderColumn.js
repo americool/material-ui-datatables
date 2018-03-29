@@ -271,7 +271,6 @@ DataTablesHeaderColumn.propTypes = {
    * Additional styling that can be applied to the tooltip.
    */
   tooltipStyle: _propTypes2.default.object
-
 };
 DataTablesHeaderColumn.defaultProps = {
   sortable: false,

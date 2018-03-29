@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _assign = require('babel-runtime/core-js/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
 var _extends2 = require('babel-runtime/helpers/extends');
 
 var _extends3 = _interopRequireDefault(_extends2);
+
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -48,6 +48,19 @@ var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function getStyles(props, context) {
+  var tableRow = context.muiTheme.tableRow;
+
+
+  return {
+    root: {
+      borderBottom: props.displayBorder && '1px solid ' + tableRow.borderColor,
+      color: tableRow.textColor,
+      height: tableRow.height
+    }
+  };
+}
+
 var DataTablesFooter = function (_TableFooter) {
   (0, _inherits3.default)(DataTablesFooter, _TableFooter);
 
@@ -59,6 +72,8 @@ var DataTablesFooter = function (_TableFooter) {
   (0, _createClass3.default)(DataTablesFooter, [{
     key: 'createRows',
     value: function createRows() {
+      var _this2 = this;
+
       var numChildren = _react2.default.Children.count(this.props.children);
       var rowNumber = 0;
       return _react2.default.Children.map(this.props.children, function (child) {
@@ -70,6 +85,9 @@ var DataTablesFooter = function (_TableFooter) {
           if (rowNumber === numChildren) {
             props.displayBorder = false;
           }
+
+          var styles = getStyles(_this2.props, _this2.context, _this2.state);
+          props.style = (0, _assign2.default)({}, styles.cell, child.props.style);
 
           var children = [];
 

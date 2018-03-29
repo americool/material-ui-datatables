@@ -276,7 +276,6 @@ var DataTables = function (_Component) {
           showCheckboxes = _props.showCheckboxes,
           height = _props.height,
           showFooterRow = _props.showFooterRow,
-          footerValues = _props.footerValues,
           showHeaderToolbar = _props.showHeaderToolbar,
           showFooterToolbar = _props.showFooterToolbar,
           rowSize = _props.rowSize,
@@ -299,7 +298,7 @@ var DataTables = function (_Component) {
           headerToolbarMode = _props.headerToolbarMode,
           filterValue = _props.filterValue,
           showHeaderToolbarFilterIcon = _props.showHeaderToolbarFilterIcon,
-          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'filterHintText', 'fixedHeader', 'fixedFooter', 'footerToolbarStyle', 'stripedRows', 'showRowHover', 'selectable', 'multiSelectable', 'enableSelectAll', 'deselectOnClickaway', 'showCheckboxes', 'height', 'showFooterRow', 'footerValues', 'showHeaderToolbar', 'showFooterToolbar', 'rowSize', 'rowSizeLabel', 'rowSizeList', 'showRowSizeControls', 'summaryLabelTemplate', 'columns', 'data', 'page', 'toolbarIconRight', 'count', 'tableStyle', 'tableBodyStyle', 'tableHeaderColumnStyle', 'tableHeaderStyle', 'tableRowColumnStyle', 'tableRowStyle', 'tableWrapperStyle', 'headerToolbarMode', 'filterValue', 'showHeaderToolbarFilterIcon']);
+          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'filterHintText', 'fixedHeader', 'fixedFooter', 'footerToolbarStyle', 'stripedRows', 'showRowHover', 'selectable', 'multiSelectable', 'enableSelectAll', 'deselectOnClickaway', 'showCheckboxes', 'height', 'showFooterRow', 'showHeaderToolbar', 'showFooterToolbar', 'rowSize', 'rowSizeLabel', 'rowSizeList', 'showRowSizeControls', 'summaryLabelTemplate', 'columns', 'data', 'page', 'toolbarIconRight', 'count', 'tableStyle', 'tableBodyStyle', 'tableHeaderColumnStyle', 'tableHeaderStyle', 'tableRowColumnStyle', 'tableRowStyle', 'tableWrapperStyle', 'headerToolbarMode', 'filterValue', 'showHeaderToolbarFilterIcon']);
 
 
       var styles = getStyles(this.props, this.context);
@@ -415,7 +414,7 @@ var DataTables = function (_Component) {
             {
               style: (0, _assign2.default)({}, styles.tableRow, tableRowStyle)
             },
-            footerValues.map(function (column, index) {
+            columns.map(function (column, index) {
               return _react2.default.createElement(
                 _DataTablesRowColumn2.default,
                 {
@@ -423,7 +422,7 @@ var DataTables = function (_Component) {
                   key: index,
                   alignRight: column.alignRight
                 },
-                footerValues[index]
+                column.total || ''
               );
             })
           )
@@ -540,7 +539,6 @@ DataTables.propTypes = {
   fixedFooter: _propTypes2.default.bool,
   fixedHeader: _propTypes2.default.bool,
   footerToolbarStyle: _propTypes2.default.object,
-  footerValues: _propTypes2.default.array,
   headerToolbarMode: _propTypes2.default.string,
   height: _propTypes2.default.string,
   initialSort: _propTypes2.default.object,
@@ -612,7 +610,6 @@ DataTables.defaultProps = {
     column: '',
     order: 'asc'
   },
-  showFooterRow: false,
-  footerValues: undefined
+  showFooterRow: false
 };
 exports.default = DataTables;
