@@ -250,7 +250,7 @@ var DataTables = function (_Component) {
     };
 
     _this.renderTableFooterTotalData = function (value, column) {
-      return column.render && column.totalStrategy !== 'Literal' ? column.render(value) : <span className="outer-td-wrapper">{value}</span>;
+      return column.totalRender ? column.totalRender(value) : column.render ? column.render(value) : value;
     };
 
     _this.state = {
